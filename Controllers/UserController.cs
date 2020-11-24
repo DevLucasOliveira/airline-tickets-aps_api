@@ -1,4 +1,5 @@
-﻿using AirlineTickets.Api.Repositories.Interfaces;
+﻿using AirlineTickets.Api.Commands;
+using AirlineTickets.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirlineTickets.Api.Controllers
@@ -10,20 +11,21 @@ namespace AirlineTickets.Api.Controllers
 
         [HttpPost]
         [Route("register")]
-        public IActionResult RegisterUser(
-             [FromServices] IUserRepository repository,
+        public GenericCommandResult RegisterUser(
+             [FromServices] IUserService service,
              [FromBody] RegisterUserCommand command)
         {
-            return (GenericCommandResult)handler.Handle(command);
+            return service.Register(command);
         }
 
         [HttpPost]
         [Route("authenticate")]
-        public IActionResult AuthenticateUser(
-            [FromServices] IUserRepository repository,
+        public GenericCommandResult AuthenticateUser(
+            [FromServices] IUserService service,
             [FromBody] AuthenticateUserCommand command)
         {
-            return (GenericCommandResult)handler.Handle(command);
+            return service.Authenticate(command);
         }
+
     }
 }

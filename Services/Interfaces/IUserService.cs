@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AirlineTickets.Api.Commands;
 
 namespace AirlineTickets.Api.Services.Interfaces
 {
-    public class IUserService
+    public interface IUserService
     {
+        GenericCommandResult Register(RegisterUserCommand command);
+        GenericCommandResult Authenticate(AuthenticateUserCommand command);
     }
 }
