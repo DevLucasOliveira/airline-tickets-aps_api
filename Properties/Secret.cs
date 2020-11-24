@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AirlineTickets.Api.Properties
+﻿namespace AirlineTickets.Api.Properties
 {
-    public class Secret
+    public static class Settings
     {
+        public static string Secret = "dd%88*377f6f928hwefwrg332r4rsdsDG^/8";
     }
 }

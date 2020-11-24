@@ -1,3 +1,4 @@
+using AirlineTickets.Api.Properties;
 using AirlineTickets.Api.Repositories;
 using AirlineTickets.Api.Repositories.Interfaces;
 using AirlineTickets.Api.Services;
@@ -26,7 +27,7 @@ namespace AirlineTickets.Api
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            JWTService.Authentication(services, "3534534");
+            JWTService.Authentication(services, Settings.Secret);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

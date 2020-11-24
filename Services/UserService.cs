@@ -1,5 +1,6 @@
 ﻿using AirlineTickets.Api.Commands;
 using AirlineTickets.Api.Models;
+using AirlineTickets.Api.Properties;
 using AirlineTickets.Api.Repositories.Interfaces;
 using AirlineTickets.Api.Services.Interfaces;
 using AirlineTickets.Api.ValueObjects;
@@ -53,10 +54,10 @@ namespace AirlineTickets.Api.Services
             if (!password)
                 return new GenericCommandResult(false, "Senha incorreta", Notifications);
 
-            var token = TokenService.GenerateToken(user.Id.ToString(), "3534534", 6);
+            var token = TokenService.GenerateToken(user.Id.ToString(), Settings.Secret, 6);
             user.Token = token;
 
-            return new GenericCommandResult(true, "Usuário cadastrado com sucesso", user);
+            return new GenericCommandResult(true, "Usuário cadastrado com sucesso", (DTOs.User)user);
         }
 
 

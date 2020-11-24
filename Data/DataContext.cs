@@ -13,8 +13,9 @@ namespace AirlineTickets.Api.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Ignore<Notification>();
-
             modelBuilder.Entity<User>().Ignore(x => x.Token);
+            modelBuilder.Entity<User>().HasKey(x => x.Id);
+            modelBuilder.Entity<User>().Property(x => x.Email);
         }
 
 
