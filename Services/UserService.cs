@@ -21,11 +21,11 @@ namespace AirlineTickets.Api.Services
         public GenericCommandResult Register(RegisterUserCommand command)
         {
             command.Validate();
-            if (Invalid)
-                return new GenericCommandResult(false, "Erro ao registrar o usuário", command.Notifications);
+            if (command.Invalid)
+                return new GenericCommandResult(false, "Erro ao cadastrar o usuário", command.Notifications);
 
             if (_userRepository.UserExists(command.Email))
-                return new GenericCommandResult(false, "Usuário já existe", command.Email);
+                return new GenericCommandResult(false, "Usuário já cadastrado", command.Email);
 
             var password = new Password(command.Password);
             if (password.Invalid)
@@ -36,13 +36,13 @@ namespace AirlineTickets.Api.Services
 
             _userRepository.Register(user);
 
-            return new GenericCommandResult(true, "Usuário cadastrado com sucesso", user);
+            return new GenericCommandResult(true, "Usuário cadastrado com sucesso", (DTOs.User)user);
         }
 
         public GenericCommandResult Authenticate(AuthenticateUserCommand command)
         {
             command.Validate();
-            if (Invalid)
+            if (command.Invalid)
                 return new GenericCommandResult(false, "Erro ao autenticar o usuário", command.Notifications);
 
             var user = _userRepository.Authenticate(command.Email);
@@ -57,7 +57,7 @@ namespace AirlineTickets.Api.Services
             var token = TokenService.GenerateToken(user.Id.ToString(), Settings.Secret, 6);
             user.Token = token;
 
-            return new GenericCommandResult(true, "Usuário cadastrado com sucesso", (DTOs.User)user);
+            return new GenericCommandResult(true, "Usuário autenticado com sucesso", (DTOs.User)user);
         }
 
 

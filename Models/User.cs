@@ -5,6 +5,10 @@ namespace AirlineTickets.Api.Models
 {
     public class User
     {
+        public User()
+        {
+
+        }
         public User(string email, Password password)
         {
             Id = Guid.NewGuid();
