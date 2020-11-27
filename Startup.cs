@@ -46,7 +46,7 @@ namespace AirlineTickets.Api
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+            services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("AirlinesTicketsConnection")));
 
             services.AddControllers();
             services.AddScoped<IUserService, UserService>();

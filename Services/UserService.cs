@@ -32,7 +32,7 @@ namespace AirlineTickets.Api.Services
                 return new GenericCommandResult(false, "Senha inválida", password.Notifications);
 
             password.CreatePasswordHash(command.Password);
-            var user = new User(command.Email, password);
+            var user = new User(command.Email, command.Name, password);
 
             _userRepository.Register(user);
 

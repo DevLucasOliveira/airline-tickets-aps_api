@@ -16,6 +16,7 @@ namespace AirlineTickets.Api.Data
             modelBuilder.Entity<User>().Ignore(x => x.Token);
             modelBuilder.Entity<User>().HasKey(x => x.Id);
             modelBuilder.Entity<User>().Property(x => x.Email);
+            modelBuilder.Entity<User>().Property(x => x.Name);
         }
 
 
